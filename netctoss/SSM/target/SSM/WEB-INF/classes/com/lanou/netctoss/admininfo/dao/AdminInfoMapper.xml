@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanou.netctoss.admininfo.dao.AdminInfoMapper">
+  <resultMap id="AdminInfoBaseResultMap" type="com.lanou.netctoss.admininfo.domain.AdminInfoExt">
+    <constructor>
+      <idArg column="admin_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="admin_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="aname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="telephone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="enrolldate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+
+  <sql id="AdminInfo_Base_Column_List">
+    ai.admin_id AS aid, admin_code, password, ai.name AS aname, telephone, email, enrolldate
+  </sql>
+
+  <resultMap id="admin" type="com.lanou.netctoss.admininfo.domain.AdminInfoExt">
+    <id column="aid" property="adminId"/>
+    <result column="admin_code" property="adminCode"/>
+    <result column="password" property="password"/>
+    <result column="aname" property="name"/>
+    <result column="telephone" property="telephone"/>
+    <result column="email" property="email"/>
+    <result column="enrolldate" property="enrolldate"/>
+  </resultMap>
+
+  <select id="findAdminCount" resultType="int">
+    SELECT count(*)
+    FROM admin_info ai
+    WHERE ai.admin_id
+    IN(
+      SELECT ai.admin_id
+      FROM admin_info ai
+      INNER JOIN admin_role ar
+      ON ai.admin_id = ar.admin_id
+      INNER JOIN role_info ri
+      ON ar.role_id = ri.role_id
+      INNER JOIN role_module rm
+      ON ar.role_id = rm.role_id
+      INNER JOIN module_info mi
+      ON rm.module_id = mi.module_id
+      <where>
+        <if test="moduleName != null and moduleName != ''">
+          AND mi.name = #{moduleName}
+        </if>
+        <if test="roleName != null and roleName != ''">
+          and ri.name = #{roleName}
+        </if>
+      </where>
+    )
+  </select>
+
+  <select id="findAdminByLimit" parameterType="com.lanou.netctoss.admininfo.domain.AdminInfoPage" resultMap="admin">
+    SELECT
+    <include refid="AdminInfo_Base_Column_List"/>
+    FROM admin_info ai
+    WHERE ai.admin_id
+    IN(
+      SELECT ai.admin_id
+      FROM admin_info ai
+      INNER JOIN admin_role ar
+      ON ai.admin_id = ar.admin_id
+      INNER JOIN role_info ri
+      ON ar.role_id = ri.role_id
+      INNER JOIN role_module rm
+      ON ar.role_id = rm.role_id
+      INNER JOIN module_info mi
+      ON rm.module_id = mi.module_id
+      <where>
+        <if test="moduleName != null and moduleName != ''">
+          AND mi.name = #{moduleName}
+        </if>
+        <if test="roleName != null and roleName != ''">
+          and ri.name = #{roleName}
+        </if>
+      </where>
+    )
+    limit #{begin},#{num}
+  </select>
+
+  <resultMap id="admin_role_module" type="com.lanou.netctoss.admininfo.domain.AdminInfoExt">
+    <id column="aid" property="adminId"/>
+    <result column="admin_code" property="adminCode"/>
+    <result column="password" property="password"/>
+    <result column="aname" property="name"/>
+    <result column="telephone" property="telephone"/>
+    <result column="email" property="email"/>
+    <result column="enrolldate" property="enrolldate"/>
+    <collection property="roleInfos" ofType="com.lanou.netctoss.roleinfo.domain.RoleInfo">
+      <id column="rid" property="roleId"/>
+      <result column="rname" property="name"/>
+      <collection property="moduleInfos" ofType="com.lanou.netctoss.moduleinfo.domain.ModuleInfo">
+        <id column="mid" property="moduleId"/>
+        <result column="mname" property="name"/>
+      </collection>
+    </collection>
+  </resultMap>
+
+<select id="findRoleByIdAdminId" parameterType="int" resultMap="admin_role_module">
+  SELECT
+  <include refid="AdminInfo_Base_Column_List"/>
+  ,
+  <include refid="com.lanou.netctoss.roleinfo.dao.RoleInfoMapper.RoleInfo_Base_Column_List"/>
+  ,
+  <include refid="com.lanou.netctoss.moduleinfo.dao.ModuleInfoMapper.ModuleInfo_Base_Column_List"/>
+  FROM admin_info ai
+  INNER JOIN admin_role ar
+  ON ai.admin_id = ar.admin_id
+  INNER JOIN role_info ri
+  ON ar.role_id = ri.role_id
+  INNER JOIN role_module rm
+  ON ar.role_id = rm.role_id
+  INNER JOIN module_info mi
+  ON rm.module_id = mi.module_id
+  <where>
+    and ai.admin_id = #{adminId}
+    <if test="moduleName != null and moduleName != ''">
+      AND mi.name = #{moduleName}
+    </if>
+    <if test="roleName != null and roleName != ''">
+      and ri.name = #{roleName}
+    </if>
+  </where>
+</select>
+
+  <resultMap id="module_roles" type="com.lanou.netctoss.moduleinfo.domain.ModuleInfo">
+    <id column="mid" property="moduleId"/>
+    <result column="mname" property="name"/>
+    <collection property="roleInfos" ofType="com.lanou.netctoss.roleinfo.domain.RoleInfo">
+      <id column="rid" property="roleId"/>
+      <result column="rname" property="name"/>
+    </collection>
+  </resultMap>
+
+  <select id="findModuleInfoByName" parameterType="com.lanou.netctoss.moduleinfo.domain.ModuleInfo" resultMap="module_roles">
+    SELECT
+    <include refid="com.lanou.netctoss.moduleinfo.dao.ModuleInfoMapper.ModuleInfo_Base_Column_List"/>
+    ,
+    <include refid="com.lanou.netctoss.roleinfo.dao.RoleInfoMapper.RoleInfo_Base_Column_List"/>
+    FROM module_info mi
+    INNER JOIN role_module rm
+    ON mi.module_id = rm.module_id
+    INNER JOIN role_info ri
+    ON ri.role_id = rm.role_id
+    WHERE mi.name = #{name}
+  </select>
+
+  <select id="findMaxAdminId" resultType="int">
+    SELECT max(admin_id)
+    FROM admin_info
+  </select>
+
+<insert id="insertAdminRole" parameterType="com.lanou.netctoss.adminrole.domain.AdminRole">
+  INSERT INTO admin_role(admin_id, role_id)
+  VALUES (#{adminId}, #{roleId})
+</insert>
+
+<select id="findAdminRoleByRoleId" parameterType="int" resultMap="com.lanou.netctoss.adminrole.dao.AdminRoleMapper.AdminRoleBaseResultMap">
+  SELECT admin_id, role_id
+  FROM admin_role ar
+  WHERE role_id = #{roleId,jdbcType=INTEGER}
+</select>
+
+<delete id="deleteAdminRoleByAdminId" parameterType="com.lanou.netctoss.admininfo.domain.AdminInfoPage">
+  delete from admin_role
+  where admin_id = #{adminId,jdbcType=INTEGER}
+</delete>
+
+  <select id="findAdminRoleByAdminId" parameterType="int" resultMap="com.lanou.netctoss.adminrole.dao.AdminRoleMapper.AdminRoleBaseResultMap">
+    SELECT admin_id, role_id
+    FROM admin_role ar
+    WHERE admin_id = #{adminId,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteAdminRoleByRoleId" parameterType="com.lanou.netctoss.adminrole.domain.AdminRole">
+    delete from admin_role
+    where admin_id = #{adminId,jdbcType=INTEGER}
+    and role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+
+  <select id="findAdminByAdminCode" parameterType="java.lang.String" resultType="com.lanou.netctoss.admininfo.domain.AdminInfoExt">
+    SELECT *
+    FROM admin_info
+    WHERE admin_code = #{adminCode,jdbcType=VARCHAR}
+  </select>
+
+
+
+
+
+<select id="selectAdminInfoByPrimaryKey" parameterType="java.lang.Integer" resultMap="AdminInfoBaseResultMap">
+  select
+  <include refid="AdminInfo_Base_Column_List" />
+  from admin_info
+  where admin_id = #{adminId,jdbcType=INTEGER}
+</select>
+
+  <delete id="deleteAdminInfoByPrimaryKey" parameterType="java.lang.Integer">
+    delete from admin_info
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertAdminInfo" parameterType="com.lanou.netctoss.admininfo.domain.AdminInfo">
+    insert into admin_info (admin_id, admin_code, password, 
+      name, telephone, email, 
+      enrolldate)
+    values (#{adminId,jdbcType=INTEGER}, #{adminCode,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{enrolldate,jdbcType=TIMESTAMP})
+  </insert>
+
+  <insert id="insertAdminInfoSelective" parameterType="com.lanou.netctoss.admininfo.domain.AdminInfo">
+    insert into admin_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="adminCode != null">
+        admin_code,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="enrolldate != null">
+        enrolldate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="adminCode != null">
+        #{adminCode,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="enrolldate != null">
+        #{enrolldate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateAdminInfoByPrimaryKeySelective" parameterType="com.lanou.netctoss.admininfo.domain.AdminInfoExt">
+    update admin_info
+    <set>
+      <if test="adminCode != null">
+        admin_code = #{adminCode,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="enrolldate != null">
+        enrolldate = #{enrolldate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateAdminInfoByPrimaryKey" parameterType="com.lanou.netctoss.admininfo.domain.AdminInfoExt">
+    update admin_info
+    set admin_code = #{adminCode,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      enrolldate = #{enrolldate,jdbcType=TIMESTAMP}
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </update>
+
+</mapper>

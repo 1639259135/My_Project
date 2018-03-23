@@ -1,0 +1,3 @@
+INSERT INTO crm.crm_post (postId, postName, depId) VALUES ('ee050687bd1a4455a153d7bbb7000003', '总监', 'ee050687bd1a4455a153d7bbb7000001');
+INSERT INTO crm.crm_post (postId, postName, depId) VALUES ('ee050687bd1a4455a153d7bbb7000004', '讲师', 'ee050687bd1a4455a153d7bbb7000001');
+INSERT INTO crm.crm_post (postId, postName, depId) VALUES ('ee050687bd1a4455a153d7bbb7000005', '主管', 'ee050687bd1a4455a153d7bbb7000002');

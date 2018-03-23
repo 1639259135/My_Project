@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<title>唯聚一家</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="css/style.css" type="text/css" rel="stylesheet"/>
+<script src="js/jquery-1.8.3.min.js" language="javascript" type="text/javascript"></script>
+<script src="js/swipe.js" language="javascript" type="text/javascript"></script>
+<script type="text/javascript" src="js/json2.js"></script>
+</head>
+<body>
+<div class="top">
+  <div class="t_l"><a href="http://localhost:8080/index"><img src="images/zjt.png"/></a></div>
+  <div class="t_c"><span>商品详情</span></div>
+  <div class="t_r"><a href="http://localhost:8080/gwc"><img src="images/gwc.png" /></a></div>
+</div>
+<ul class="tabs">
+    <li class="current"><a href="http://localhost:8080/pro_detail">商品简介</a></li>
+    <li><a href="http://localhost:8080/pro_detailc_">商品详情</a></li>
+    <li id="a"><a href="http://localhost:8080/pro_pj">商品评价</a></li>
+</ul>
+<div class="content" style="margin-top:82px">
+
+<div id='mySwipe' style='max-width:500px;margin:0 auto;position:relative' class='swipe'>
+  <div class='swipe-wrap'>
+    <!--<div><img src="images/pro.jpg"  height="180px" width="100%"/></div>-->
+    <!--<div><img src="images/pro.jpg"  height="180px" width="100%"/></div>-->
+    <!--<div><img src="images/pro.jpg"  height="180px" width="100%"/></div>-->
+  </div>
+  <div class="xfsc"><img src="images/sc.png"/></div> 
+</div>
+
+
+
+  <div class="main">
+      <!--<div class="jj_title">精品法国原装进口红酒优惠特卖</div>-->
+      <!--<ul class="jj_list" style="margin-bottom:48px;">-->
+          <!--<li>-->
+              <!--<ul class="jj_info">-->
+                  <!--<li><span class="label">商品售价：</span><span class="red">￥45.00</span></li>-->
+                  <!--<li><span class="label">商品原价：</span><span style=" color:#ccc; text-decoration:line-through">￥52.00</span></li>-->
+                  <!--<li style="padding:4px 3px; overflow:hidden" class="numbar"><span class="label">选购数量：</span><input value="—" type="button" class="plus"/><input value="1" type="text" class="in" id="setnum"/><input value="+" type="button" class="add"/></li>-->
+                  <!--<li><span class="label">原产地：</span><span>法国</span></li>-->
+                  <!--<li><span class="label">商品规格：</span><span>500mlx8瓶</span></li>-->
+              <!--</ul>-->
+          <!--</li>-->
+      <!--</ul>-->
+  </div>
+</div>
+<div class="b_nav"><a href="#"><img src="images/jrgwc.png"/></a></div>
+
+</body>
+<script type="text/javascript" src="js/test.js"></script>
+<script>
+    $(document).ready(function () {
+        test_detail();
+    });
+
+    // pure JS
+    var elem = document.getElementById('mySwipe');
+    window.mySwipe = Swipe(elem, {
+        // startSlide: 4,
+        auto: 3000,
+        continuous: true,
+        // disableScroll: true,
+        // stopPropagation: true,
+        callback: function(index, element) {
+            //alert(index);
+        }
+//        ,transitionEnd: function(index, element) {}
+    });
+
+    // with jQuery
+    // window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
+</script>
+</html>

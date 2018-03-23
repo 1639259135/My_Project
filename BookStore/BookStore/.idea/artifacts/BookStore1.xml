@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="BookStore1">
+    <output-path>$PROJECT_DIR$/out/artifacts/BookStore1</output-path>
+    <root id="archive" name="BookStore1.war" />
+  </artifact>
+</component>

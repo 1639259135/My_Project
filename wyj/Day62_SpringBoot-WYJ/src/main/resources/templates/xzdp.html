@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<title>唯聚一家</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="css/style.css" type="text/css" rel="stylesheet"/>
+<script src="js/jquery-1.8.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div class="top">
+  <div class="t_l"  style=" display:none"><a href="index.html"><img src="images/zjt.png"/></a></div>
+  <div class="t_c">
+     <ul class="nav_tab">
+       <li><a class="on"  href="http://localhost:8080/xzdp">定位选择</a></li>
+       <li><a href="http://localhost:8080/xzdp1">历史浏览</a></li>
+     </ul>
+  </div>
+  <div class="t_r"><a href="index.html"><img src="images/ewmsm.png"/></a></div>
+</div>
+<div class="content content1">
+  <div class="main">
+     <ul class="xdlc">
+        <li class="fs"><a href="#"><br/>定位<br/>城区</a></li>
+        <li class="k">—</li>
+        <li class="ss"><a href="#"><br/>定位<br/>商圈</a></li>
+        <li class="k">—</li>
+        <li class="ts"><a href="#"><br/>定位<br/>店铺</a></li>
+     </ul>
+     <ul class="zc">
+        <li class="zc_text"  style=" margin-top:15px"><a href="qhcs.html"><span class="zc_icon"><img src="images/dz.png"/></span><input  type="button" value="选择省/市/区" class="long" style="color:#999"/><img src="images/yjt.png" style=" position:absolute; right:5px; top:12px; width:8px; height:10px"/></a></li>
+         <li class="zc_text"  style=" margin-top:15px"><a href="xzsq.html"><span class="zc_icon"><img src="images/xzcs.png"/></span><input  type="button" value="选择商圈" class="long" style="color:#999"/><img src="images/yjt.png" style=" position:absolute; right:5px; top:12px; width:8px; height:10px"/></a></li>
+          <li class="zc_text"  style=" margin-top:15px"><a href="xzdpx.html"><span class="zc_icon"><img src="images/dp.png"/></span><input  type="button" value="选择店铺" class="long" style="color:#999"/><img src="images/yjt.png" style=" position:absolute; right:5px; top:12px; width:8px; height:10px"/></a></li>
+     </ul>
+  </div>
+</div>
+<div class="foot_nav" style="padding-bottom:8px"><a href="index.html" class="tjdcwj">进入店铺</a></div>
+
+<div class="dy"  style=" display:none">
+    <p>
+      进入店铺的三种方式：<br/>
+      1.定位选择：<br/>选择城区、选择商圈、选择店铺、进入店铺；<br/>
+      2.历史浏览：<br/>点击查看历史浏览的店铺列表，快捷选择；<br/>
+      3.扫描二维码：<br/>点击右上角二维码图标触发二维码扫描程序，扫描店铺二维码直接进入店铺
+    </p>
+</div>
+<script type="text/javascript">
+  window.onload=function(){
+	// 获取窗口宽度
+	if (window.innerWidth)
+	winWidth = window.innerWidth;
+	else if ((document.body) &amp;&amp; (document.body.clientWidth))
+	winWidth = document.body.clientWidth;
+	// 获取窗口高度
+	if (window.innerHeight)
+	winHeight = window.innerHeight;
+	else if ((document.body) &amp;&amp; (document.body.clientHeight))
+	winHeight = document.body.clientHeight;
+	// 通过深入 Document 内部对 body 进行检测，获取窗口大小
+	if (document.documentElement &amp;&amp; document.documentElement.clientHeight &amp;&amp; document.documentElement.clientWidth)
+	{
+	winHeight = document.documentElement.clientHeight;
+	winWidth = document.documentElement.clientWidth;
+	}
+	$('.dy').css({'width':winWidth,'height':winHeight});
+	$('.dy').click(function(){
+		  $(".dy").hide();
+		})
+	}
+  </script>
+</body>
+</html>

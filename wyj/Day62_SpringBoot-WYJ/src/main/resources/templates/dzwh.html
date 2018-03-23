@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<title>唯聚一家</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="css/style.css" type="text/css" rel="stylesheet"/>
+<script src="js/jquery-1.8.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<!--头部-->
+<div class="top">
+  <div class="t_l"><a href="http://localhost:8080/gwc"><img src="images/zjt.png"/></a></div>
+  <div class="t_c">收货地址</div>
+  <div class="t_r"><a href="xzdz.html"><img src="images/xzdz_icon.png"/></a></div>
+</div>
+<!--主干部分-->
+<div class="content">
+  <div class="main">
+    <ul class="dz_list">
+      <li> 
+        <div class="dzcheck"><label><a href="#"><img src="images/checked.png"/></a></label></div>
+        <div class="dz_text">
+         <p><span class="name">陈伟</span><span class="tel">15807197602</span></p>
+         <p><span class="addr">北京市丰台区星火科技大厦1212</span></p>
+        </div>
+        <div class="del"><label><a href="#"><img src="images/scdz.png"/></a></label></div>
+      </li>
+      <li> 
+        <div class="dzcheck"><label><a href="#"><img src="images/chec.png"/></a></label></div>
+        <div class="dz_text">
+         <p><span class="name">陈伟</span><span class="tel">15807197602</span></p>
+         <p><span class="addr">北京市丰台区星火科技大厦1212</span></p>
+        </div>
+        <div class="del"><label><a href="#"><img src="images/scdz.png"/></a></label></div>
+      </li>
+      <li> 
+        <div class="dzcheck"><label><a href="#"><img src="images/chec.png"/></a></label></div>
+        <div class="dz_text">
+         <p><span class="name">陈伟</span><span class="tel">15807197602</span></p>
+         <p><span class="addr">北京市丰台区星火科技大厦1212</span></p>
+        </div>
+        <div class="del"><label><a href="#"><img src="images/scdz.png"/></a></label></div>
+      </li>
+      <li> 
+        <div class="dzcheck"><label><a href="#"><img src="images/chec.png"/></a></label></div>
+        <div class="dz_text">
+         <p><span class="name">陈伟</span><span class="tel">15807197602</span></p>
+         <p><span class="addr">北京市丰台区星火科技大厦1212</span></p>
+        </div>
+        <div class="del"><label><a href="#"><img src="images/scdz.png"/></a></label></div>
+      </li>
+      <li> 
+        <div class="dzcheck"><label><a href="#"><img src="images/chec.png"/></a></label></div>
+        <div class="dz_text">
+         <p><span class="name">陈伟</span><span class="tel">15807197602</span></p>
+         <p><span class="addr">北京市丰台区星火科技大厦1212</span></p>
+        </div>
+        <div class="del"><label><a href="#"><img src="images/scdz.png"/></a></label></div>
+      </li>
+      <li> 
+        <div class="dzcheck"><label><a href="#"><img src="images/chec.png"/></a></label></div>
+        <div class="dz_text">
+         <p><span class="name">陈伟</span><span class="tel">15807197602</span></p>
+         <p><span class="addr">北京市丰台区星火科技大厦1212</span></p>
+        </div>
+        <div class="del"><label><a href="#"><img src="images/scdz.png"/></a></label></div>
+      </li>
+      <li> 
+        <div class="dzcheck"><label><a href="#"><img src="images/chec.png"/></a></label></div>
+        <div class="dz_text">
+         <p><span class="name">陈伟</span><span class="tel">15807197602</span></p>
+         <p><span class="addr">北京市丰台区星火科技大厦1212</span></p>
+        </div>
+        <div class="del"><label><a href="#"><img src="images/scdz.png"/></a></label></div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script> 
+  window.onload=function(){
+	// 获取窗口宽度
+	if (window.innerWidth)
+	winWidth = window.innerWidth;
+	else if ((document.body) &amp;&amp; (document.body.clientWidth))
+	winWidth = document.body.clientWidth;
+	// 获取窗口高度
+	if (window.innerHeight)
+	winHeight = window.innerHeight;
+	else if ((document.body) &amp;&amp; (document.body.clientHeight))
+	winHeight = document.body.clientHeight;
+	// 通过深入 Document 内部对 body 进行检测，获取窗口大小
+	if (document.documentElement &amp;&amp; document.documentElement.clientHeight &amp;&amp; document.documentElement.clientWidth)
+	{
+	winHeight = document.documentElement.clientHeight;
+	winWidth = document.documentElement.clientWidth;
+	}
+
+	var wh=(winWidth-108);
+	$('.dz_text').css('width',wh);
+	}
+  </script>
+</body>
+</html>

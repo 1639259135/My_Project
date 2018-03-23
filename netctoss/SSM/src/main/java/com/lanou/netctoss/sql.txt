@@ -1,0 +1,48 @@
+SELECT *
+FROM account
+WHERE idcard_no = 333333201802273333;
+
+
+SELECT *
+FROM admin_info ai
+  INNER JOIN admin_role ar
+    ON ai.admin_id = ar.admin_id
+  INNER JOIN role_info ri
+    ON ar.role_id = ri.role_id;
+
+
+SELECT count(*)
+  FROM admin_info
+  WHERE admin_id
+  IN(
+    SELECT ai.admin_id
+      FROM admin_info ai
+        INNER JOIN admin_role ar
+          ON ai.admin_id = ar.admin_id
+        INNER JOIN role_info ri
+          ON ar.role_id = ri.role_id
+        INNER JOIN role_module rm
+          ON rm.role_id = rm.role_id
+        INNER JOIN module_info mi
+          ON rm.module_id = mi.module_id
+    WHERE mi.name = '角色管理'
+    AND ri.name = '经理'
+  );
+
+
+SELECT
+  ai.*
+  FROM admin_info ai
+  WHERE admin_id
+  IN(
+    SELECT ai.admin_id
+      FROM admin_info ai
+        INNER JOIN admin_role ar
+          ON ai.admin_id = ar.admin_id
+        INNER JOIN role_info ri
+          ON ar.role_id = ri.role_id
+        INNER JOIN role_module rm
+          ON ar.role_id = rm.role_id
+        INNER JOIN module_info mi
+          ON rm.module_id = mi.module_id
+  );

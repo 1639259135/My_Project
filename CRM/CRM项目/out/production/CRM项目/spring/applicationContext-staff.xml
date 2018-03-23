@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd"
+       >
+
+    <bean id="staff" class="com.lanou.crm.staff.domain.CrmStaff"/>
+
+    <bean name="department" class="com.lanou.crm.department.domain.CrmDepartment"/>
+
+    <bean id="staffDao" class="com.lanou.crm.staff.dao.impl.StaffDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="staffService" class="com.lanou.crm.staff.service.impl.StaffServiceImpl">
+        <property name="staffDao" ref="staffDao"/>
+        <property name="departmentDao" ref="departmentDao"/>
+    </bean>
+
+    <bean id="staffAction" class="com.lanou.crm.staff.web.action.StaffAction" scope="prototype">
+        <property name="staff" ref="staff"/>
+        <property name="department" ref="department"/>
+        <property name="staffService" ref="staffService"/>
+    </bean>
+
+
+</beans>

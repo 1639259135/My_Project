@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <constant name="struts.ui.theme" value="simple"/>
+    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.custom.i18n.resources" value="UTF-8"/>
+    <constant name="struts.objectFactory" value="spring"/>
+
+    <package name="common" extends="struts-default" namespace="/">
+
+        <interceptors>
+            <interceptor name="login" class="com.lanou.crm.staff.web.interceptor.LoginInterceptor">
+                <param name="excludeMethods">login</param>
+            </interceptor>
+
+            <interceptor-stack name="my-default">
+                <interceptor-ref name="login"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="my-default"/>
+
+    </package>
+
+
+    <include file="struts-staff.xml"/>
+    <include file="struts-courseType.xml"/>
+    <include file="struts-department.xml"/>
+    <include file="struts-classes.xml"/>
+    <include file="struts-page.xml"/>
+
+</struts>

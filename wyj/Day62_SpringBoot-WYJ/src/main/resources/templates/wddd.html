@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<title>唯聚一家</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="css/style.css" type="text/css" rel="stylesheet"/>
+<script src="js/jquery-1.8.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div class="top">
+  <div class="t_l"></div>
+  <div class="t_c"><span>我的订单</span></div>
+  <div class="t_r"></div>
+</div>
+<div class="content">
+  <div class="main">
+  <ul class="ddfl_list">
+     <li class="di1"><a href="http://localhost:8080/gwc"><img src="images/d_icon1.png"  alt="购物车"/><p>购物车（<span class="red">0</span>）</p></a></li>
+     <li class="di2"><a href="http://localhost:8080/dfh"><img src="images/d_icon2.png"  alt="待发货"/><p>待发货（<span class="red">0</span>）</p></a></li>
+     <li class="di3"><a href="http://localhost:8080/dsh"><img src="images/d_icon3.png"  alt="待收货"/><p>待收货（<span class="red">0</span>）</p></a></li>
+     <li class="di4"><a href="http://localhost:8080/dpj"><img src="images/d_icon4.png"  alt="待评价"/><p>待评价（<span class="red">11</span>）</p></a></li>
+     <li class="di5"><a href="http://localhost:8080/ywc"><img src="images/d_icon5.png"  alt="已完成"/><p>已完成（<span class="red">0</span>）</p></a></li>
+     <li class="di6"><a href="http://localhost:8080/yqx"><img src="images/d_icon6.png"  alt="已取消"/><p>已取消（<span class="red">8</span>）</p></a></li>
+     <li class="di7"><a href="http://localhost:8080/wdsc"><img src="images/d_icon7.png"  alt="我的收藏"/><p>我的收藏（<span class="red">0</span>）</p></a></li>
+  </ul>
+  </div>
+</div>
+
+<ul class="foot_nav">
+   <li class="nav_sy"><a href="http://localhost:8080/index"><p>首页</p></a></li>
+   <li class="nav_fl"><a href="http://localhost:8080/fenlei"><p>商品分类</p></a></li>
+   <li class="nav_dd"><a class="current"  href="http://localhost:8080/wddd"><p>我的订单</p></a></li>
+   <li class="nav_zx"><a href="http://localhost:8080/grzx"><p>个人中心</p></a></li>
+</ul>
+
+<script> 
+  window.onload=function(){
+	// 获取窗口宽度
+	if (window.innerWidth)
+	winWidth = window.innerWidth;
+	else if ((document.body) &amp;&amp; (document.body.clientWidth))
+	winWidth = document.body.clientWidth;
+	// 获取窗口高度
+	if (window.innerHeight)
+	winHeight = window.innerHeight;
+	else if ((document.body) &amp;&amp; (document.body.clientHeight))
+	winHeight = document.body.clientHeight;
+	// 通过深入 Document 内部对 body 进行检测，获取窗口大小
+	if (document.documentElement &amp;&amp; document.documentElement.clientHeight &amp;&amp; document.documentElement.clientWidth)
+	{
+	winHeight = document.documentElement.clientHeight;
+	winWidth = document.documentElement.clientWidth;
+	}
+
+	var pad=(winHeight-416)*1/6;
+	$('.ddfl_list li a').css({'padding-top':pad,'padding-bottom':pad});
+	}
+  </script>
+</body>
+</html>

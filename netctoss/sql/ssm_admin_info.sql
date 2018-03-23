@@ -1,0 +1,11 @@
+INSERT INTO ssm.admin_info (admin_id, admin_code, password, name, telephone, email, enrolldate) VALUES (2000, 'admin', '123', 'ADMIN', '123456789', 'admin@tarena.com.cn', '2018-02-06 02:57:32');
+INSERT INTO ssm.admin_info (admin_id, admin_code, password, name, telephone, email, enrolldate) VALUES (3000, 'zhangfei', '123', 'ZhangFei', '123456789', 'zhangfei@tarena.com.cn', '2018-02-06 02:57:32');
+INSERT INTO ssm.admin_info (admin_id, admin_code, password, name, telephone, email, enrolldate) VALUES (4000, 'liubei', '123', 'LiuBei', '123456789', 'liubei@tarena.com.cn', '2018-02-06 02:57:32');
+INSERT INTO ssm.admin_info (admin_id, admin_code, password, name, telephone, email, enrolldate) VALUES (5000, 'caocao', '123', 'CaoCao', '123456789', 'caocao@tarena.com.cn', '2018-02-06 02:57:32');
+INSERT INTO ssm.admin_info (admin_id, admin_code, password, name, telephone, email, enrolldate) VALUES (6000, 'aaaa', '111', 'AAAA', '12345678900', '@aaaa.com.cn', '2018-03-02 20:16:48');
+INSERT INTO ssm.admin_info (admin_id, admin_code, password, name, telephone, email, enrolldate) VALUES (8000, 'asdf', '123', 'ASDF', '1111111', '@asdf.com.cn', '2018-03-02 20:21:47');
+INSERT INTO ssm.admin_info (admin_id, admin_code, password, name, telephone, email, enrolldate) VALUES (9000, 'xxxx', '6666', 'XXXX', '666666', '666666.qq.com', '2018-03-02 20:44:11');
+INSERT INTO ssm.admin_info (admin_id, admin_code, password, name, telephone, email, enrolldate) VALUES (10000, 'hhhh', '3333', 'HHHH', '15643547684', '333333@qq.com', '2018-03-02 20:46:30');
+INSERT INTO ssm.admin_info (admin_id, admin_code, password, name, telephone, email, enrolldate) VALUES (11000, 'zhangsan', '123', 'ZhangSan', '0123210', '@hhh.com.cn', '2018-03-02 21:12:45');
+INSERT INTO ssm.admin_info (admin_id, admin_code, password, name, telephone, email, enrolldate) VALUES (12000, 'mmp', '333', 'MMP', '1234321', '@ahfgajdg.com.cn', '2018-03-02 21:15:58');
+INSERT INTO ssm.admin_info (admin_id, admin_code, password, name, telephone, email, enrolldate) VALUES (13000, 'rlgl', '222', 'RLGL', '2112112', '@123.com.cn', '2018-03-02 21:20:12');

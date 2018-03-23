@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--
+        将层c3p0的配置文件,导入到spring容器中
+    -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" value="classpath:c3p0.properties"/>
+    </bean>
+
+    <!--
+        创建一个ComboPooledDataSource类的对象
+        为该对象指定四个属性
+        属性值,从上面导入的文件中获取
+    -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--sessionFactory对象让spring帮我们创建
+        指定该对象的dataSource属性(c3p0配置信息)
+        指定configLocation(Hibernate配置文件)
+        并且让spring帮助我们管理hibernate-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="show_sql">true</prop>
+                <prop key="format_sql">true</prop>
+                <prop key="hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+        <property name="mappingLocations" value="classpath:com/lanou/crm/*/domain/*.hbm.xml"/>
+    </bean>
+
+    <!--声明事物管理器-->
+    <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- 配置通知 -->
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="add*"/>
+            <tx:method name="update*"/>
+            <tx:method name="delete*"/>
+            <tx:method name="login" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config proxy-target-class="true">
+        <aop:pointcut id="operateTransaction" expression="execution(* com.lanou.crm.*.service..*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="operateTransaction"/>
+    </aop:config>
+
+
+
+    <import resource="applicationContext-classes.xml"/>
+    <import resource="applicationContext-staff.xml"/>
+    <import resource="applicationContext-courseType.xml"/>
+    <import resource="applicationContext-department.xml"/>
+    <import resource="applicationContext-post.xml"/>
+    <import resource="applicationContext-page.xml"/>
+
+</beans>

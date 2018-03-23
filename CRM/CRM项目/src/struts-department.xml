@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <package name="dep" extends="staff">
+
+        <action name="queryAllDepartment" class="departmentAction" method="queryAllDep">
+            <result name="success">/pages/department/listDepartment.jsp</result>
+        </action>
+
+        <action name="queryByDepId" class="departmentAction" method="queryByDepId">
+            <result name="success">/pages/department/addOrEditDepartment.jsp</result>
+        </action>
+
+        <action name="addOrEditDepartment" method="addOrEditDepartment" class="departmentAction">
+            <result name="success">/pages/department/listDepartment.jsp</result>
+        </action>
+
+    </package>
+
+</struts>

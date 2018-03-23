@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="Spring" type="spring">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../java包/Spring/core/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../java包/Spring/core/spring-aop-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../java包/Spring/core/spring-beans-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../java包/Spring/core/spring-context-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../java包/Spring/core/spring-core-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../java包/Spring/core/spring-expression-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../java包/Spring/core/spring-web-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../java包/Spring/aspectjrt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../java包/Spring/aspectjweaver.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../java包/Spring/cglib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../java包/Spring/spring-jdbc-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../java包/Spring/spring-tx-4.3.8.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

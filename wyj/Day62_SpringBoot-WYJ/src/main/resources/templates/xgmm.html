@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<title>唯聚一家</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="css/style.css" type="text/css" rel="stylesheet"/>
+  <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+</head>
+<script type="text/javascript">
+    $(document).ready(function () {
+        console.log("bbbb")
+
+        $(".tj a").click(function () {
+            var opwd=$("#b").val();
+            var passReg=/^[0-9A-Za-z]{6,10}/;
+            console.log(sessionStorage.getItem("uid"))
+            var pwd= $("#a").val();
+            if (pwd==""){
+                $("#span1").html("原始密码不能为空").css("color","red");
+                return false
+            }else if(pwd!=sessionStorage.getItem("pwd")){
+                $("#span1").html("原始密码输入错误").css("color","red");
+            }else if($("#b").val()==$("#a").val()){
+                $("#span2").html("与原始密码相同").css("color","red");
+            }else if ($("#b").val()==""||!passReg.test($("#b").val())){
+                $("#span2").html("密码长度应在6位以上").css("color","red");
+                return false
+            }else if($("#b").val()!=$("#c").val()){
+                $("#span3").html("两次输入密码不同").css("color","red");
+                return false
+            }else {
+                $.get("http://192.168.11.232:8080/update",{password:(Number)(opwd),user_id:(Number)(sessionStorage.getItem("uid"))},function (data) {
+                    console.log(data)
+                    if(data){
+                        alert("修改成功,请重新登录");
+                        sessionStorage.clear();
+                        window.location="login.html";
+                    }else {
+                        alert("添加失败")
+                    }
+                });
+            }
+        })
+    })
+</script>
+<body>
+<!--头部-->
+<div class="top">
+  <div class="t_l"><a href="sz.html"><img src="images/zjt.png"/></a></div>
+  <div class="t_c">修改密码</div>
+</div>
+<!--主干部分-->
+<div class="content">
+  <div class="main">
+    <ul class="zc">
+      <li class="zc_title">原始密码：</li>
+      <li class="zc_text"><span class="zc_icon"><img src="images/mm.png" alt="原始密码"/></span>
+        <input id="a" type="text" placeholder="请输入原始密码" class="long"/>
+      </li>
+      <span id="span1"></span>
+      <li class="zc_title">设置新密码：</li>
+      <li class="zc_text"><span class="zc_icon"><img src="images/mm.png" alt="新密码"/></span>
+        <input id="b" type="text" placeholder="请输入新密码" class="long"/>
+      </li>
+      <span id="span2"></span>
+      <li class="zc_title">确认新密码：</li>
+      <li class="zc_text"><span class="zc_icon"><img src="images/mmcf.png" alt="确认密码"/></span>
+        <input id="c" type="text" placeholder="请重复输入新密码" class="long"/>
+      </li>
+      <span id="span3"></span>
+      <li class="tj" ><a href="#">保存</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

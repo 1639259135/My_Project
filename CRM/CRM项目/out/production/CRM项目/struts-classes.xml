@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <package name="class" extends="staff">
+
+        <action name="queryAllClasses" class="classesAction" method="queryAllClasses">
+            <result name="success">/pages/coursetype/listCourse.jsp</result>
+        </action>
+
+        <action name="queryByClaID" class="classesAction" method="queryByClaId">
+            <result name="success">/pages/classesm/addOrEditClass.jsp</result>
+        </action>
+
+        <action name="queryByClaID2" class="classesAction" method="queryByClaId">
+            <result name="success">/pages/classesm/showClass.jsp</result>
+        </action>
+
+        <action name="editClass" class="classesAction" method="editClass">
+            <result name="success">/pages/coursetype/listCourse.jsp</result>
+        </action>
+
+    </package>
+
+</struts>

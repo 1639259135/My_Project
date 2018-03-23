@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <package name="staff" extends="common">
+
+        <global-results>
+            <result name="login">/pages/login.jsp</result>
+        </global-results>
+
+
+        <action name="login" class="staffAction" method="login">
+            <result name="success" type="redirect">/pages/frame.jsp</result>
+        </action>
+
+        <action name="queryAllStaff" class="staffAction" method="queryAllStaff">
+            <result name="success" >/pages/staff/listStaff.jsp</result>
+        </action>
+
+        <action name="queryByStaffName" method="queryByStaffName" class="staffAction">
+            <result name="success">/pages/staff/listStaff.jsp</result>
+        </action>
+
+        <action name="queryBySid" class="staffAction" method="queryByStaffId">
+            <result name="success">/pages/staff/editStaff.jsp</result>
+        </action>
+
+        <action name="queryPost" class="postAction" method="queryPostByDepId"/>
+
+        <action name="staffAction_editPassword" class="staffAction" method="uploadPwd">
+            <result name="success" type="redirect">/pages/login.jsp</result>
+            <result name="input">/pages/staff/updPwd.jsp</result>
+        </action>
+
+        <action name="update" class="staffAction" method="updateStaff">
+            <result name="success" type="chain">queryAllStaff</result>
+        </action>
+
+        <action name="staffAction_logout" class="staffAction" method="logout">
+            <result name="success">/pages/login.jsp</result>
+        </action>
+
+    </package>
+
+
+</struts>

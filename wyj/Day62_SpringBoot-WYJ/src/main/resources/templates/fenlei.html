@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<title>唯聚一家</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="css/style.css" type="text/css" rel="stylesheet"/>
+  <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<!--头部-->
+<div class="top">
+  <div class="t_l"><a href="index.html"><img src="images/zjt.png"/></a></div>
+  <div class="t_c">商品分类</div>
+</div>
+<!--主干部分-->
+<div class="content content1">
+  <div class="main">
+    <ul class="fenlei">
+      <li data-type="1">
+        <a href="#">
+        <div class="fenlei_img"><img src="images/icon1.png" alt="进口零食"/></div>
+        <div class="fenlei_text">
+          <p class="yjfl">进口零食</p>
+          <p class="ejfl"><span>进口零食</span><span>普通零食</span><span>特色零食</span><span>精品零食</span></p>
+        </div>
+        </a>
+      </li>
+
+      <li data-type="5">
+        <a href="#">
+        <div class="fenlei_img"><img src="images/icon2.png" alt="休闲食品"/></div>
+        <div class="fenlei_text">
+          <p class="yjfl">休闲食品</p>
+          <p class="ejfl"><span>休闲零食</span><span>饼干糕点</span><span>进口食品</span><span>地方特产</span></p>
+        </div>
+        </a>
+      </li>
+
+      <li data-type="3"> <a href="#">
+        <div class="fenlei_img"><img src="images/icon3.png" alt="牛奶饮料"/></div>
+        <div class="fenlei_text">
+          <p class="yjfl">美食佳肴</p>
+          <p class="ejfl"><span>小吃饮料</span><span>特色美食</span><span>普通饮料</span></p>
+        </div>
+        </a>
+      </li>
+
+      <li data-type="4">
+        <a href="#">
+        <div class="fenlei_img"><img src="images/icon4.png" alt="冲饮咖啡"/></div>
+        <div class="fenlei_text">
+          <p class="yjfl">饮食小吃</p>
+          <p class="ejfl"><span>小零食</span><span>速溶咖啡</span><span>麦片/芝麻糊</span></p>
+        </div>
+        </a>
+      </li>
+
+      <li data-type="6">
+        <a href="#">
+        <div class="fenlei_img"><img src="images/icon5.png" alt="面食干粮"/></div>
+        <div class="fenlei_text">
+          <p class="yjfl">精美饰品</p>
+          <p class="ejfl"><span>手表</span><span></span><span>项链</span><span>戒指</span></p>
+        </div>
+        </a>
+      </li>
+
+      <li data-type="2">
+        <a href="#">
+        <div class="fenlei_img"><img src="images/icon6.png" alt="厨房调味"/></div>
+        <div class="fenlei_text">
+          <p class="yjfl">美妆用品</p>
+          <p class="ejfl"><span>口红</span><span>香水</span></p>
+        </div>
+        </a>
+      </li>
+
+      <li data-type="7">
+        <a href="#">
+        <div class="fenlei_img"><img src="images/icon7.png" alt="书籍分类"/></div>
+        <div class="fenlei_text">
+          <p class="yjfl">书籍分类</p>
+          <p class="ejfl"><span>小说</span><span>名著</span><span>散文</span><span>诗集</span></p>
+        </div>
+        </a>
+      </li>
+
+      <li data-type="8">
+        <a href="#">
+        <div class="fenlei_img"><img src="images/icon8.png" alt="其他类目"/></div>
+        <div class="fenlei_text">
+          <p class="yjfl">其他类目</p>
+          <p class="ejfl"><span>蔬菜干</span><span>干果</span><span>水果干</span></p>
+        </div>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".fenlei li").each(function () {
+            $(this).click(function () {
+                console.log("aaaa"+this.dataset.type);
+                sessionStorage.setItem("type", this.dataset.type);
+                window.location="pro_list.html"
+            })
+        })
+
+        $(".nav_dd a").click(function () {
+            if (sessionStorage.getItem("username")==null){
+                alert("请先登录");
+
+            }else {
+                window.location="wddd.html"
+            }
+        })
+
+        $(".nav_zx a").click(function () {
+            if (sessionStorage.getItem("username")==null){
+                alert("请先登录");
+
+            }else {
+                window.location="grzx.html"
+            }
+        })
+
+    })
+</script>
+<ul class="foot_nav">
+   <li class="nav_sy"><a href="index.html"><p>首页</p></a></li>
+   <li class="nav_fl"><a class="current"  href="fenlei.html"><p>商品分类</p></a></li>
+   <li class="nav_dd"><a href="#"><p>我的订单</p></a></li>
+   <li class="nav_zx"><a href="#"><p>个人中心</p></a></li>
+</ul>
+</body>
+</html>

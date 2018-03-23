@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<title>唯聚一家</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="css/style.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<!--头部-->
+<div class="top">
+  <div class="t_l"><a href="index.html"><img src="images/zjt.png"/></a></div>
+  <div class="t_c">注 册</div>
+</div>
+<!--主干部分-->
+<div class="content">
+  <div class="main">
+    <ul class="zc">
+      <li class="zc_title">手机号码：</li>
+      <li class="zc_text"><span class="zc_icon"><img src="images/lxdh.png"   alt="用户手机号码"/></span>
+        <input id="phone" type="text" name="" placeholder="手机号码" class="long"/>
+      </li>
+      <span id="span1"></span>
+      <li class="zc_title">用户名：</li>
+      <li class="zc_text"><span class="zc_icon"><img src="images/mm.png" alt="用户名"/></span>
+        <input id="username" type="text" placeholder="请输入用户名" class="long"/>
+      </li>
+      <span id="span2"></span>
+      <li class="zc_title">设置密码：</li>
+      <li class="zc_text"><span class="zc_icon"><img src="images/mm.png" alt="设置密码"/></span>
+        <input id="password" type="text" placeholder="请输入密码" class="long"/>
+      </li>
+      <span id="span3"></span>
+      <li class="zc_title">确认密码：</li>
+      <li class="zc_text"><span class="zc_icon"><img src="images/mmcf.png" alt="确认密码"/></span>
+        <input id="pwd" type="text" placeholder="请重复输入密码" class="long"/>
+      </li>
+      <span id="span4"></span>
+      <!--<li class="zc_title">手机验证：</li>-->
+      <!--<li class="zc_text"  style=" background:none; border:none">-->
+        <!--<div class="aa"><span class="zc_icon"><img src="images/yzm.png"  alt="手机验证"/></span>-->
+          <!--<input type="text" placeholder="您的手机号码" class="mid"/>-->
+        <!--</div>-->
+        <!--<div class="bb">-->
+          <!--<input type="button" value="获取验证码"  id="btn" class="btn_mfyzm  shot"  />-->
+        <!--</div>-->
+      <!--</li>-->
+      <li class="tj" id="sub"><a href="#">提 交</a></li>
+    </ul>
+  </div>
+</div>
+<script type="text/javascript">
+  var a=false;
+  $("#phone").blur(function () {
+      $.get("http://localhost:8080/isExit",{phone:$("#phone").val()},function (data) {
+          console.log("1111++++"+data);
+          console.log(data.user.phone);
+          if(data.user.phone!=null){
+              $("#span1").html("手机号码已被注册").css("color","red");
+              a=false;
+          }else {
+              $("#span1").html("✔").css("color","green");
+              a=true;
+          }
+      })
+  });
+  $("#username").blur(function () {
+//      console.log("aaaa++"+$("#username").val());
+      $.get("http://localhost:8080/selectUser",{user_name:$("#username").val()},function (data) {
+          if(data.user.user_name!=null){
+              $("#span2").html("用户名已存在").css("color","red");
+              a=false;
+          }else {
+              a=true;
+          }
+      })
+  });
+
+  $(document).ready(function () {
+      $("#sub").on("click",function () {
+          reg();
+      });
+  })
+  function reg() {
+      var phoneReg=/^[0-9]{11}$/;
+      var passReg=/^[0-9A-Za-z]{6,10}/;
+      if($("#phone").val()==""||!phoneReg.test($("#phone").val())){
+          $("#span1").html("号码格式错误").css("color","red");
+          return false;
+      }else if($("#username").val()==""){
+          $("#span2").html("用户名为空").css("color","red");
+          return false;
+      }else  if ($("#password").val()==""||!passReg.test($("#password").val())){
+          $("#span3").html("密码长度应在6位以上").css("color","red");
+          return false
+      }else if($("#password").val()!=$("#pwd").val()){
+          $("#span4").html("两次输入密码不同").css("color","red");
+      }else if(a){
+          console.log(a);
+          $.get("http://localhost:8080/insertUser",{user_name:$("#username").val(),phone:$("#phone").val(),password:$("#password").val()},
+           function () {
+               window.location="http://localhost:8080/toLogin"
+          })
+      }
+  }
+</script>
+
+<!--<script type="text/javascript">-->
+<!--var wait=60;-->
+<!--document.getElementById("btn").disabled = false;   -->
+<!--function time(o) {-->
+        <!--if (wait == 0) {-->
+            <!--o.removeAttribute("disabled");           -->
+            <!--o.value="获取验证码";-->
+            <!--wait = 60;-->
+        <!--} else {-->
+            <!--o.setAttribute("disabled", true);-->
+            <!--o.value="重新发送(" + wait + ")";-->
+            <!--wait&#45;&#45;;-->
+            <!--setTimeout(function() {-->
+                <!--time(o)-->
+            <!--},-->
+            <!--1000)-->
+        <!--}-->
+    <!--}-->
+<!--document.getElementById("btn").onclick=function(){time(this);}-->
+<!--</script> -->
+</body>
+</html>

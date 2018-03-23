@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="courseType" class="com.lanou.crm.course_type.domain.CrmCourseType"/>
+
+    <bean name="courseTypeDao" class="com.lanou.crm.course_type.dao.impl.CourseTypeDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="courseType" ref="courseType"/>
+    </bean>
+
+    <bean name="courseTypeService" class="com.lanou.crm.course_type.service.impl.CourseTypeServiceImpl">
+        <property name="courseTypeDao" ref="courseTypeDao"/>
+    </bean>
+
+    <bean name="courseTypeAction" class="com.lanou.crm.course_type.web.action.courseTypeAction">
+        <property name="courseTypeService" ref="courseTypeService"/>
+        <property name="courseType" ref="courseType"/>
+    </bean>
+
+
+</beans>

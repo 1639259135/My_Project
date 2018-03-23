@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<title>唯聚一家</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="css/style.css" type="text/css" rel="stylesheet"/>
+<script src="js/jquery-1.8.3.min.js" language="javascript" type="text/javascript"></script>
+<script src="js/swipe.js" language="javascript" type="text/javascript"></script>
+<script src="js/json2.js" type="text/javascript" ></script>
+</head>
+
+<body>
+<div class="top">
+  <div class="t_l"><a href="http://localhost:8080/xzdp"><img src="images/qh.png"/></a></div>
+  <div class="t_c"><span class="search"><input type="text"  class="kuang" placeholder="商品名/货号/类型"/><input type="button" class="niu"/></span></div>
+  <div class="t_r"><a id="login_gwc" class="kjdl"  href="http://localhost:8080/toLogin">登录</a><a id="gwc_login" href="http://localhost:8080/gwc"  style="display:none"><img src="images/gwc.png"/></a></div>
+</div>
+<div class="content content1">
+  <div class="main">
+  
+
+<!--<div class="banner">
+     <img src="images/banner.png"/>
+</div>
+-->
+    
+<div id='mySwipe' style='max-width:500px;margin:0 auto' class='swipe'>
+  <div class='swipe-wrap'>
+    <div><img src="images/banner.png"/></div>
+    <div><img src="images/banner.png"/></div>
+    <div><img src="images/banner.png"/></div>
+  </div>
+</div>
+
+  
+  
+  <!--店铺公告-->
+  <div class="dpgg">
+    <p><marquee direction="left" align="left" loop="-1" scrollamount="2" scrolldelay="0" hspace="6px"><span id="spanone"></span>唯聚一家怡海花园店欢迎您的光临！</marquee></p>
+  </div>
+  <!--分类-->
+  <ul class="fl_list">
+     <li data-type="1" class="i1"><a href="#"><img src="images/i1.png"  alt="进口零食"/><p>进口零食</p></a></li>
+     <li data-type="5" class="i2"><a href="#"><img src="images/i2.png"  alt="休闲食品"/><p>休闲食品</p></a></li>
+     <li data-type="3" class="i3"><a href="#"><img src="images/i3.png"  alt="美食佳肴"/><p>美食佳肴</p></a></li>
+     <li data-type="4" class="i4"><a href="#"><img src="images/i4.png"  alt="饮食小吃"/><p>饮食小吃</p></a></li>
+     <li data-type="6" class="i5"><a href="#"><img src="images/i5.png"  alt="精美饰品"/><p>精美饰品</p></a></li>
+     <li data-type="2" class="i6"><a href="#"><img src="images/i6.png"  alt="美妆用品"/><p>美妆用品</p></a></li>
+     <li data-type="7" class="i7"><a href="#"><img src="images/i7.png"  alt="书籍分类"/><p>书籍分类</p></a></li>
+     <li data-type="8" class="i8"><a href="#"><img src="images/i8.png"  alt="其他类目"/><p>其他类目</p></a></li>
+  </ul>
+  <!--推荐上商品-->
+     <ul class="pro_list">
+
+     </ul>
+
+  </div>
+</div>
+<script type="text/javascript" src="js/test.js"></script>
+<script type="text/javascript">
+
+//    console.log(sessionStorage.getItem("username"));
+    if (sessionStorage.getItem("username") == null){
+        $("#gwc_login").css('display','none');
+        $("#login_gwc").css('display','inline');
+    }else{
+        $("#gwc_login").css('display','inline');
+        $("#login_gwc").css('display','none');
+    }
+
+//     pure JS
+    var elem = document.getElementById('mySwipe');
+    window.mySwipe = Swipe(elem, {
+//         startSlide: 4,
+        auto: 3000,
+        continuous: true,
+//         disableScroll: true,
+//         stopPropagation: true,
+        callback: function(index, element) {
+            //alert(index);
+        }
+//         ,transitionEnd: function(index, element) {}
+    });
+
+//     with jQuery
+//     window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
+
+
+    $(document).ready(function () {
+//        $("#spanone").html(sessionStorage.getItem("username")+",&nbsp;&nbsp;");
+//        console.log(sessionStorage.phone);
+        test_index();
+    });
+
+</script>
+<ul class="foot_nav">
+   <li class="nav_sy"><a class="current"  href="index.html"><p>首页</p></a></li>
+   <li class="nav_fl"><a href="http://localhost:8080/fenlei"><p>商品分类</p></a></li>
+   <li class="nav_dd"><a href="#"><p>我的订单</p></a></li>
+   <li class="nav_zx"><a href="http://localhost:8080/grzx"><p>个人中心</p></a></li>
+</ul>
+</body>
+</html>

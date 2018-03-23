@@ -1,0 +1,2 @@
+INSERT INTO crm.crm_course_type (courseTypeId, courseCost, total, courseName, remark) VALUES ('ee050687bd1a4455a153d7bbb7000008', 1300, 1000, 'JavaEE', '');
+INSERT INTO crm.crm_course_type (courseTypeId, courseCost, total, courseName, remark) VALUES ('ee050687bd1a4455a153d7bbb7000009', 8000, 6000, '大数据', '');

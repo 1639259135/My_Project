@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<title>唯聚一家</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="css/style.css" type="text/css" rel="stylesheet"/>
+  <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<!--头部-->
+<div class="top">
+  <div class="t_l"><a href="index.html"><img src="images/zjt.png"/></a></div>
+  <div class="t_c">登 录</div>
+</div>
+<!--主干部分-->
+<div class="content">
+  <div class="main">
+    <ul class="zc">
+      <li class="zc_title">账号：</li>
+      <li class="zc_text">
+        <span class="zc_icon">
+          <img src="images/mm.png" alt="您的手机号码"/>
+        </span>
+        <input id="phone" type="text" placeholder="请输入手机号" class="long"/>
+      </li>
+      <li class="zc_title">密码：</li>
+      <li class="zc_text"><span class="zc_icon"><img src="images/mmcf.png" alt="输入密码"/></span>
+        <input id="pwd" type="text" placeholder="请输入密码" class="long"/>
+      </li>
+      <li class="dlzy"><span class="jzmm"><input type="checkbox"/>记住密码</span><a class="wjmm" href="regest1.html"> 忘记密码</a></li>
+      <li class="dlan" onclick="login()"><a href="#">登 录</a></li>
+      <li class="zcan" ><a href="http://localhost:8080/toRegister">注 册</a></li>
+    </ul>
+  </div>
+</div>
+<script type="text/javascript">
+
+  function login() {
+      var phone=$("#phone").val();
+      var pwd =$("#pwd").val();
+
+    if (phone==""){
+        alert("请输入手机号")
+    }else if(pwd==""){
+        alert("请输入密码")
+    }else {
+//        console.log("aaaa");
+        $.get("http://localhost:8080/selectUserByLogin",{phone:(Number)(phone),password:(Number)(pwd)},function (data) {
+            if (data.user == null){
+                alert("手机号或密码错误！！")
+            }else {
+//                    console.log("+++++  "+data.user);
+//                    console.log("username"+data.user.user_name);
+                    sessionStorage.setItem("uid",data.user.user_id);
+                    sessionStorage.setItem("pwd",data.user.password);
+                    sessionStorage.setItem("username",data.user.user_name);
+
+                    sessionStorage.setItem("realName",data.user.real_name);
+                    sessionStorage.setItem("address",data.user.address);
+                    sessionStorage.setItem("phone",data.user.phone);
+
+                    window.location="http://localhost:8080/index";
+            }
+        })
+    }
+  }
+</script>
+</body>
+</html>

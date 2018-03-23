@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<title>唯聚一家</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="css/style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<!--头部-->
+<div class="top">
+  <div class="t_l"><a href="index.html"><img src="images/zjt.png"/></a></div>
+  <div class="t_c">重置密码</div>
+</div>
+<!--主干部分-->
+<div class="content">
+  <div class="main">
+    <ul class="zc">
+      <li class="zc_title">手机号码：</li>
+      <li class="zc_text"><span class="zc_icon"><img src="images/lxdh.png"   alt="用户手机号码"/></span>
+        <input type="text" placeholder="您的姓名" class="long"/>
+      </li>
+      <li class="zc_title">设置新密码：</li>
+      <li class="zc_text"><span class="zc_icon"><img src="images/mm.png" alt="设新密码"/></span>
+        <input type="text" placeholder="请输入新密码" class="long"/>
+      </li>
+      <li class="zc_title">确认新密码：</li>
+      <li class="zc_text"><span class="zc_icon"><img src="images/mmcf.png" alt="确认密码"/></span>
+        <input type="text" placeholder="请重复输入新密码" class="long"/>
+      </li>
+      <li class="zc_title">手机验证：</li>
+      <li class="zc_text"  style=" background:none; border:none">
+        <div class="aa"><span class="zc_icon"><img src="images/yzm.png"  alt="手机验证"/></span>
+          <input type="text" placeholder="您的手机号码" class="mid"/>
+        </div>
+         <div class="bb">
+          <input type="button" value="获取验证码"  id="btn" class="btn_mfyzm  shot"  />
+        </div>
+      </li>
+      <li class="tj" ><a href="login.html">提 交</a></li>
+    </ul>
+  </div>
+</div>
+<script type="text/javascript">
+var wait=60;
+document.getElementById("btn").disabled = false;   
+function time(o) {
+        if (wait == 0) {
+            o.removeAttribute("disabled");           
+            o.value="获取验证码";
+            wait = 60;
+        } else {
+            o.setAttribute("disabled", true);
+            o.value="重新发送(" + wait + ")";
+            wait--;
+            setTimeout(function() {
+                time(o)
+            },
+            1000)
+        }
+    }
+document.getElementById("btn").onclick=function(){time(this);}
+</script> 
+</body>
+</html>

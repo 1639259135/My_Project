@@ -1,0 +1,6 @@
+INSERT INTO bookstore.user (uid, username, PASSWORD, email, code, state) VALUES ('26648f86f6eb474088a5d6451c69e6d5', 'DuDawen', '666', '1639259135@qq.com', 'adbb2f5308974ca687bdb00ae30804ba26648f86f6eb474088a5d6451c69e6d5', 1);
+INSERT INTO bookstore.user (uid, username, PASSWORD, email, code, state) VALUES ('764f068936564960bc9f11ebfe11957e', '123', '123', '456', 'c8ce15f891794491b6ef3b7ad198cc14764f068936564960bc9f11ebfe11957e', 0);
+INSERT INTO bookstore.user (uid, username, PASSWORD, email, code, state) VALUES ('aae154a98a2f4e569be22e19a40ab33f', 'XuChao', 'xc666', '530954924@qq.com', 'f95425de359545fb83d39bf885e163deaae154a98a2f4e569be22e19a40ab33f', 0);
+INSERT INTO bookstore.user (uid, username, PASSWORD, email, code, state) VALUES ('cea5517a4ba64bf394ac82ac66a7a7ad', 'hahaha', '123', '123456789@qq.com', 'dbcd65449e904105a7b77b75d6b5e5cccea5517a4ba64bf394ac82ac66a7a7ad', 0);
+INSERT INTO bookstore.user (uid, username, PASSWORD, email, code, state) VALUES ('d57b19899d7f4ccc84117efa9ee79f2c', 'ddw', '123', '123456789@qq.com', '34ab1538359b44f3bb0febd815cc2b84d57b19899d7f4ccc84117efa9ee79f2c', 0);
+INSERT INTO bookstore.user (uid, username, PASSWORD, email, code, state) VALUES ('d8e90eb8fde543579013a2a539987418', '123', '123', '123456789@qq.com', 'c87902cca9f347048e1c69a338ad3f49d8e90eb8fde543579013a2a539987418', 0);

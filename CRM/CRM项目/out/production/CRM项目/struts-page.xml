@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <package name="page" extends="staff">
+
+        <action name="claPage" class="pageAction" method="classPage">
+            <result name="success">/pages/classesm/listClass.jsp</result>
+        </action>
+
+        <action name="typePage" class="pageAction" method="courseTypePage">
+            <result name="success">/pages/coursetype/listCourse.jsp</result>
+        </action>
+
+        <action name="depPage" class="pageAction" method="depPage">
+            <result name="success">/pages/department/listDepartment.jsp</result>
+        </action>
+
+
+
+    </package>
+
+</struts>

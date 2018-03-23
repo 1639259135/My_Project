@@ -1,0 +1,3 @@
+INSERT INTO crm.crm_staff (staffId, loginName, loginPwd, staffName, gender, onDutyDate, postId) VALUES ('ee050687bd1a4455a153d7bbb7000000', 'denny', 'e10adc3949ba59abbe56e057f20f883e', '管理员', null, null, null);
+INSERT INTO crm.crm_staff (staffId, loginName, loginPwd, staffName, gender, onDutyDate, postId) VALUES ('ee050687bd1a4455a153d7bbb7000006', 'laowang', 'e10adc3949ba59abbe56e057f20f883e', '老王', '男', '2012-02-12 00:00:00', 'ee050687bd1a4455a153d7bbb7000005');
+INSERT INTO crm.crm_staff (staffId, loginName, loginPwd, staffName, gender, onDutyDate, postId) VALUES ('ee050687bd1a4455a153d7bbb7000007', 'xiaowang', 'e10adc3949ba59abbe56e057f20f883e', '小王', '女', '2014-04-14 00:00:00', 'ee050687bd1a4455a153d7bbb7000004');

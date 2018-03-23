@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="post" class="com.lanou.crm.post.domain.CrmPost"/>
+
+    <bean name="postDao" class="com.lanou.crm.post.dao.impl.PostDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean name="postService" class="com.lanou.crm.post.service.impl.PostServiceImpl">
+        <property name="postDao" ref="postDao"/>
+    </bean>
+
+    <bean name="postAction" class="com.lanou.crm.post.web.action.PostAction">
+        <property name="post" ref="post"/>
+        <property name="postService" ref="postService"/>
+    </bean>
+
+</beans>
